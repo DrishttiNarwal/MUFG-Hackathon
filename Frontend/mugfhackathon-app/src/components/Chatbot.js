@@ -20,17 +20,23 @@ export default function Chatbot() {
         "Based on your input, here are some insurance plans you may like:";
       setMessages([...newMessages, { sender: "bot", text: botReply }]);
       setRecommendations([
-        {
-          name: "Life Cover Plan",
-          desc: "Comprehensive coverage for your family",
-          price: "Rs.25000/month"
-        },
-        {
-          name: "Health Plus Plan",
-          desc: "Covers medical expenses and emergencies",
-          price: "Rs.10000/month"
-        }
-      ]);
+  {
+    name: "Life Gold Protection Plan",
+    desc: "Upgrades your basic life insurance to a Gold-tier plan, ensuring higher payout and better coverage for your family in case of unforeseen events.",
+    price: "AUD 250/month"
+  },
+  {
+    name: "Family Health Premium Plan",
+    desc: "Comprehensive health insurance for you, your spouse, and children — covering hospital stays, surgeries, and preventive care.",
+    price: "AUD 180/month"
+  },
+   {
+    name: "Travel Annual Cover Plan",
+    desc: "Annual family travel insurance covering medical emergencies, cancellations, and also lost luggage for domestic and overseas trips for family.",
+    price: "AUD 50/month"
+  }
+]
+);
     }, 1000);
   };
 

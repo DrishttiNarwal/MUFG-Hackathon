@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Chat from "./pages/Chat";
+import Export from "./pages/Export"; // ✅ Added import
 import "./App.css";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/chat" element={<Chat />} />
+            <Route path="/export" element={<Export />} /> {/* ✅ Added route */}
           </Routes>
         </main>
         <Footer />
