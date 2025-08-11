@@ -1,0 +1,46 @@
+.chat-page {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 80px); /* full height minus navbar/footer */
+  padding: 20px;
+  background-color: #f4f7fa;
+}
+
+.chat-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.chat-header h1 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #003366;
+  margin-bottom: 8px;
+}
+
+.chat-header p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.chat-container-wrapper {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.chat-container-wrapper > div {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  width: 100%;
+  max-width: 900px;
+  height: 70vh; /* nice fixed height for hackathon demo */
+  display: flex;
+  flex-direction: column;
+}
