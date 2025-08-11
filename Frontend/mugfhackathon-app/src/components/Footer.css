@@ -1,0 +1,11 @@
+.footer {
+  background-color: #e2e8f0;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.85rem;
+  color: #4a5568;
+  flex-shrink: 0; /* keeps footer from shrinking */
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
