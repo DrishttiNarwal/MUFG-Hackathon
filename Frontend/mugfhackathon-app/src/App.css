@@ -1,0 +1,175 @@
+/* App layout wrapper */
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main content grows to push footer down */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #003366;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+  background-color: #003366;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* Home Page */
+.home {
+  text-align: center;
+  padding: 50px;
+  flex: 1; /* make Home fill available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* center vertically */
+  align-items: center; /* center horizontally */
+}
+
+.home h1 {
+  font-size: 2.5rem;
+  color: #003366;
+}
+
+.home p {
+  max-width: 600px;
+  margin: 20px auto;
+  font-size: 1.2rem;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #003366;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.cta-button:hover {
+  background-color: #0055aa;
+}
+
+/* Chatbot */
+.chat-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.chat-box {
+  border: 1px solid #ccc;
+  padding: 15px;
+  height: 300px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+}
+
+.message {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 70%;
+}
+
+.message.bot {
+  background-color: #e0e0e0;
+}
+
+.message.user {
+  background-color: #003366;
+  color: white;
+  margin-left: auto;
+}
+
+.chat-input {
+  display: flex;
+  margin-top: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+}
+
+.chat-input button {
+  background-color: #003366;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  background-color: #0055aa;
+}
+
+/* Recommendations */
+.recommendations {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  width: 200px;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+  color: #003366;
+}
+
+.card .price {
+  font-weight: bold;
+  color: #0055aa;
+}
+
+.card button {
+  background-color: #003366;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background-color: #0055aa;
+}
