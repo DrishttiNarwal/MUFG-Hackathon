@@ -9,12 +9,14 @@ export default function Export() {
 
   // Dummy summary (replace later with actual state/context data)
   const summaryText = `
-    GuardBot Conversation Summary:
-    - User discussed insurance needs for retirement planning.
-    - Recommended Life Insurance with Income Protection.
-    - Suggested premium adjustment based on lifestyle.
-    - Provided risk analysis and future premium projection.
-  `;
+  GuardBot Conversation Summary:
+  - The user, aged approximately 31, is seeking Health Insurance coverage.
+  - Selected a Standard Health Plan with an additional Dental cover add-on.
+  - Annual premium budget specified at approximately AUD 2,500.
+  - Recommended a balanced coverage plan to optimise both cost efficiency and benefits.
+  - Provided a detailed explanation of add-on advantages and a comprehensive breakdown of projected monthly costs.
+`;
+
 
   const downloadPDF = () => {
     const doc = new jsPDF();
