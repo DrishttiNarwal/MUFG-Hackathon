@@ -9,6 +9,7 @@ export default function Navbar() {
       <div className="nav-links">
         <Link to="/">Home</Link>
         <Link to="/chat">Chat</Link>
+        <Link to="/dashboard">Dashboard</Link>
       </div>
     </nav>
   );
