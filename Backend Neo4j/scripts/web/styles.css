@@ -1,0 +1,16 @@
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial}
+.app{display:flex;gap:16px;height:100vh;padding:16px;background:#0b1020;color:#f2f3f7}
+.chat{flex:2;display:flex;flex-direction:column;background:#121733;border:1px solid #2a3566;border-radius:12px}
+.messages{flex:1;overflow:auto;padding:16px}
+.msg{margin:8px 0;padding:12px;border-radius:10px;max-width:80%}
+.msg.user{background:#2a3566;margin-left:auto}
+.msg.bot{background:#1b2452}
+.input{display:flex;gap:8px;padding:12px;border-top:1px solid #2a3566}
+.input input{flex:1;padding:10px;border-radius:8px;border:1px solid #2a3566;background:#10162f;color:#fff}
+.input button{padding:10px 16px;border:none;border-radius:8px;background:#6c7cff;color:#fff;cursor:pointer}
+.form{flex:1;background:#121733;border:1px solid #2a3566;border-radius:12px;padding:16px;overflow:auto}
+.form h2,.pred h3{margin-top:0}
+.form label{display:block;margin:10px 0;font-size:14px}
+.form input,.form select{width:100%;padding:8px;border-radius:8px;border:1px solid #2a3566;background:#10162f;color:#fff}
+.pred{margin-top:16px;padding:8px;background:#0f1430;border-radius:8px;border:1px solid #2a3566}
+#predBox{white-space:pre-wrap;font-family:ui-monospace,Consolas,monospace}
