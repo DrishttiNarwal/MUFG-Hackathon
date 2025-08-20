@@ -10,6 +10,7 @@ export default function Navbar() {
         <Link to="/">Home</Link>
         <Link to="/chat">Chat</Link>
         <Link to="/dashboard">Dashboard</Link>
+        <Link to="/ourteam">Our Team</Link> {/* ✅ Added Our Team link */}
       </div>
     </nav>
   );
