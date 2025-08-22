@@ -15,8 +15,6 @@ Superannuation members often struggle to navigate complex insurance options, fac
 
 ## Features
 
-## Features
-
 - **Insurance Recommendation Engine**
   - Provides personalized policy recommendations across Health, Travel, Property, Vehicle, and Life insurance.
   - Aligns suggestions with member’s lifestyle, financial goals, and life stage.
@@ -69,16 +67,20 @@ Superannuation members often struggle to navigate complex insurance options, fac
 
 ## Tech Stack
 
--   **AI Implementation**: Agentic AI
--   **LLM Used**: gemini-2.0-flash
--   **Backend**: Python, FastAPI\
--   **Graph DB**: Neo4j\
--   **Vector Search**: FAISS\
--   **Visualization**: PowerBI, NetworkX\
--   **ML/DL Models**: GraphRAG pipeline, Transformers\
--   **Dataset**: Generated synthetic + real-world insurance schema
--   **Explored ML Models**: K-Means, PCA, Linear Regression, Random Forest, CatBoost
--   **Accuracy enhancement Techniques**: GridSearchCV, ,ANN, Cross Validation
+| Category                       | Tools / Models Used                                                                 |
+|--------------------------------|--------------------------------------------------------------------------------------|
+| **AI Implementation**          | Agentic AI                                                                           |
+| **LLM Used**                   | gemini-2.0-flash                                                                     |
+| **Frontend**                   | React.js                                                                             |
+| **Backend**                    | Python, FastAPI                                                                      |
+| **Graph Database**             | Neo4j                                                                                |
+| **Vector Search**              | FAISS                                                                                |
+| **Visualization**              | PowerBI, NetworkX                                                                    |
+| **ML/DL Models**               | GraphRAG pipeline, Transformers                                                      |
+| **Dataset**                    | Generated synthetic + real-world insurance schema                                    |
+| **Explored ML Models**         | K-Means, PCA, Linear Regression, Random Forest, CatBoost                             |
+| **Accuracy Enhancement**       | GridSearchCV, ANN, Cross Validation                                                  |
+
 
 ------------------------------------------------------------------------
 
