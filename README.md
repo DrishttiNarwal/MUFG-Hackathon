@@ -6,7 +6,7 @@ Superannuation members often struggle to navigate complex insurance options, fac
 
 ## Demo
 
-- [Final Project Demo Video](#) *(link coming soon)*
+- [Final Project Demo Video](https://youtu.be/pwmYsWL7-uI)
 - [PowerBI Dashboard Walkthrough (Insurance Dataset Analytics)](https://youtu.be/EB1_zJiKx44)
 - [Graph Node Exploration (Interactive Insights via Neo4j + NetworkX + FAISS)](https://youtu.be/Oh24Uh5J5_E)
 
@@ -75,6 +75,7 @@ Superannuation members often struggle to navigate complex insurance options, fac
 | **Backend**                    | Python, FastAPI                                                                      |
 | **Graph Database**             | Neo4j                                                                                |
 | **Vector Search**              | FAISS                                                                                |
+| **Embedding Search**           | all-MiniLM-L6-v2, ChromaDB                                                           |
 | **Visualization**              | PowerBI, NetworkX                                                                    |
 | **ML/DL Models**               | GraphRAG pipeline, Transformers                                                      |
 | **Dataset**                    | Generated synthetic + real-world insurance schema                                    |
@@ -117,6 +118,10 @@ Superannuation members often struggle to navigate complex insurance options, fac
     npm start
     ```
 ------------------------------------------------------------------------
+## Architecture diagram
+
+
+------------------------------------------------------------------------
 
 ## Contributors
 
@@ -125,7 +130,7 @@ Superannuation members often struggle to navigate complex insurance options, fac
 -   Ishaan Despande
 -   Arya Barai
 
-Final Year AI & ML Students at SIT, Pune.
+-   (Final Year AI & ML Students at SIT, Pune. Batch 2022-26)
 ------------------------------------------------------------------------
 
 ## Future Work
