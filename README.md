@@ -67,7 +67,7 @@ Superannuation members often struggle to navigate complex insurance options, fac
 
 ## Tech Stack
 
-| Category                       | Tools / Models Used                                                                 |
+| Category                       | Tools / Models Used                                                                  |
 |--------------------------------|--------------------------------------------------------------------------------------|
 | **AI Implementation**          | Agentic AI                                                                           |
 | **LLM Used**                   | gemini-2.0-flash                                                                     |
