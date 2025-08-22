@@ -1,4 +1,4 @@
-# 🤖 Insurance Bot - AI-Powered Insurance Recommendation System  
+# 🤖 GuardBot - AI-Powered Insurance Recommendation System  
 
 ##  Overview  
 Insurance Bot is an intelligent recommendation system that helps users find the most suitable insurance policies based on their profile and requirements. The system supports multiple insurance types across different countries, leveraging machine learning and natural language processing to provide personalized recommendations with clear explanation. 
@@ -322,7 +322,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 <p align="center">  
-  Made with ❤️ by Team Insurance Bot  
+  Made with ❤️ by <b>Team GuardBot</b> <br>  
+  <b>Group No. 18</b>  
 </p>  
+
+### 👨‍💻 Team Members  
+- Drishtti Narwal  
+- Atharv Kulkarni  
+- Ishaan Deshpande  
+- Arya Barai  
+
 ```
 
