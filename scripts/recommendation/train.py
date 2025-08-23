@@ -54,7 +54,7 @@ def _split_num_cat(X: pd.DataFrame) -> Tuple[List[str], List[str]]:
 def _fit_encoder(X: pd.DataFrame) -> OneHotEncoder:
     """Fit OneHotEncoder on categorical columns (object dtype)."""
     _, cat_cols = _split_num_cat(X)
-    enc = OneHotEncoder(handle_unknown="ignore", sparse=False)
+    enc = OneHotEncoder(handle_unknown="ignore", sparse_output=False)
     if len(cat_cols):
         enc.fit(X[cat_cols])
     else:

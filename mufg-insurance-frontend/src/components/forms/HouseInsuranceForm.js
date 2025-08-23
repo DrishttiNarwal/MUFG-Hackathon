@@ -44,12 +44,20 @@ const HouseInsuranceForm = () => {
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
-      const recommendations = await insuranceService.getRecommendations('house', 'IN', {
-        ...values,
-        propertyvalue: values.property_value,
-        propertyage: values.property_age,
-        propertytype: values.property_type,
-        propertysizesqfeet: values.property_size_sq_feet,
+      const countryCode = window.localStorage.getItem('selectedCountry') || 'IN';
+      const recommendations = await insuranceService.getRecommendations('HOUSE', countryCode, {
+        age: parseInt(values.age),
+        property_value: parseFloat(values.property_value),
+        property_age: parseInt(values.property_age),
+        property_type: values.property_type.toLowerCase(),
+        property_size_sq_feet: parseFloat(values.property_size_sq_feet),
+        // Backend expected fields
+        propertyvalue: parseFloat(values.property_value),
+        propertyage: parseInt(values.property_age),
+        propertytype: values.property_type.toLowerCase(),
+        propertysize: parseFloat(values.property_size_sq_feet),
+        sum_assured: parseFloat(values.property_value), // Using property value as sum assured
+        sumassured: parseFloat(values.property_value) // Backend expects this field
       });
       navigate('/results', { state: { recommendations, insuranceType: 'house' } });
     } catch (error) {

@@ -15,7 +15,7 @@ TIER_MULTIPLIER = {
     "Basic": 0.90,
     "Standard": 1.00,
     "Gold": 1.20,
-    "Premium": 1.45,
+    "Premium": 1.45
 }
 
 # Master CSV schema (standardized)
@@ -43,10 +43,11 @@ VEHICLE_DEPRECIATION = {
 
 # Base premium rates by vehicle type (percentage of IDV)
 VEHICLE_BASE_PREMIUM = {
-    "2wheeler": 0.02,     # 2% of IDV
+    "bike": 0.02,        # 2% of IDV
     "car": 0.03,         # 3% of IDV
-    "suv": 0.035,        # 3.5% of IDV
-    "commercial": 0.04   # 4% of IDV
+    "luxury": 0.035,     # 3.5% of IDV
+    "truck": 0.04,       # 4% of IDV
+    "three wheeler": 0.025  # 2.5% of IDV
 }
 
 # Property insurance base rates and multipliers
@@ -210,6 +211,187 @@ def predict(country: str, policy: str, data: dict) -> Dict:
     """
     print(f"Input data: {data}")
     print(f"Country: {country}, Policy: {policy}")
+    
+    if policy.lower() == "vehicle":
+        try:
+            # Extract and validate vehicle data
+            vehicle_price = float(data.get("price_of_vehicle", 0))
+            if vehicle_price <= 0:
+                raise ValueError("Vehicle price must be greater than 0")
+            
+            vehicle_age = int(data.get("age_of_vehicle", 0))
+            if vehicle_age < 0:
+                raise ValueError("Vehicle age cannot be negative")
+            
+            vehicle_type = str(data.get("type_of_vehicle", "")).lower()
+            if vehicle_type not in VEHICLE_BASE_PREMIUM:
+                print(f"Invalid vehicle type: {vehicle_type}, defaulting to car")
+                vehicle_type = "car"
+            
+            # Calculate IDV and base premium
+            idv = vehicle_price * (1 - VEHICLE_DEPRECIATION.get(min(vehicle_age, 5), 0.5))
+            base_premium = idv * VEHICLE_BASE_PREMIUM[vehicle_type]
+            
+            # Calculate premiums for all tiers
+            all_tiers = {
+                "Basic": round(base_premium * 0.8, 2),
+                "Standard": round(base_premium, 2),
+                "Gold": round(base_premium * 1.2, 2),
+                "Premium": round(base_premium * 1.5, 2)
+            }
+            
+            # Convert currency if needed
+            if country.upper() == "AUSTRALIA":
+                all_tiers = {k: round(v * INR_TO_AUD, 2) for k, v in all_tiers.items()}
+            
+            # Calculate confidence scores based on vehicle characteristics
+            confidence = {
+                "Basic": 0.25,
+                "Standard": 0.35,
+                "Gold": 0.25,
+                "Premium": 0.15
+            }
+            
+            # Adjust confidence based on vehicle price
+            if vehicle_price > 2500000:  # Luxury/premium vehicles
+                confidence = {
+                    "Basic": 0.1,
+                    "Standard": 0.2,
+                    "Gold": 0.3,
+                    "Premium": 0.4
+                }
+            elif vehicle_price > 1000000:  # Mid-high range
+                confidence = {
+                    "Basic": 0.2,
+                    "Standard": 0.3,
+                    "Gold": 0.3,
+                    "Premium": 0.2
+                }
+            
+            # Further adjust based on vehicle age
+            if vehicle_age <= 2:  # Newer vehicles
+                if "Premium" in confidence:
+                    confidence["Premium"] += 0.1
+                    confidence["Basic"] = max(0, confidence["Basic"] - 0.1)
+            elif vehicle_age >= 5:  # Older vehicles
+                confidence["Basic"] += 0.1
+                confidence["Premium"] = max(0, confidence["Premium"] - 0.1)
+            
+            # Normalize confidence scores
+            total = sum(confidence.values())
+            confidence = {k: round(v/total, 4) for k, v in confidence.items()}
+            
+            # Determine recommended tier based on vehicle characteristics
+            if vehicle_price > 2500000 and vehicle_age <= 2:
+                recommended_tier = "Premium"
+            elif vehicle_price > 1000000 and vehicle_age <= 5:
+                recommended_tier = "Gold"
+            elif vehicle_age >= 10 or vehicle_price < 500000:
+                recommended_tier = "Basic"
+            else:
+                recommended_tier = "Standard"
+            
+            return {
+                "recommended_tier": recommended_tier,
+                "all_tiers": all_tiers,
+                "confidence": confidence
+            }
+            
+        except (ValueError, TypeError) as e:
+            print(f"Error processing vehicle insurance data: {str(e)}")
+            raise ValueError(f"Invalid vehicle insurance data: {str(e)}")
+
+    # Temporary solution for house and travel insurance
+    if policy.lower() in ['house', 'travel']:
+        print(f"Generating placeholder response for {policy} insurance")
+        base_premium = 0
+        
+        if policy.lower() == 'house':
+            property_value = float(data.get("property_value", 0))
+            property_age = int(data.get("property_age", 0))
+            # Simple calculation: 0.1% of property value, increased by 5% per year of age
+            base_premium = property_value * 0.001 * (1 + property_age * 0.05)
+        elif policy.lower() == 'travel':
+            trip_duration = int(data.get("trip_duration_days", 0))
+            # Simple calculation: 1000 per day
+            base_premium = trip_duration * 1000
+        
+        all_tiers = {
+            "Basic": round(base_premium * 0.8, 2),
+            "Standard": round(base_premium, 2),
+            "Gold": round(base_premium * 1.2, 2),
+            "Premium": round(base_premium * 1.5, 2)
+        }
+        
+        # Convert currency if needed
+        if country.upper() == "AUSTRALIA":
+            all_tiers = {k: round(v * INR_TO_AUD, 2) for k, v in all_tiers.items()}
+        
+        # Initialize confidence distribution
+        confidence = {
+            "Basic": 0.25,
+            "Standard": 0.35,
+            "Gold": 0.25,
+            "Premium": 0.15
+        }
+        
+        # Calculate confidence based on characteristics
+        if policy.lower() == 'house':
+            property_value = float(data.get("property_value", 0))
+            property_age = int(data.get("property_age", 0))
+            
+            # Adjust confidence based on property value
+            if property_value > 5000000:  # High-value property
+                confidence = {
+                    "Basic": 0.1,
+                    "Standard": 0.2,
+                    "Gold": 0.3,
+                    "Premium": 0.4
+                }
+            elif property_value > 2500000:  # Mid-high value property
+                confidence = {
+                    "Basic": 0.15,
+                    "Standard": 0.25,
+                    "Gold": 0.35,
+                    "Premium": 0.25
+                }
+            elif property_value < 1000000:  # Lower value property
+                confidence = {
+                    "Basic": 0.4,
+                    "Standard": 0.3,
+                    "Gold": 0.2,
+                    "Premium": 0.1
+                }
+                
+            # Further adjust based on property age
+            if property_age <= 5:  # Newer property
+                confidence["Premium"] += 0.1
+                confidence["Basic"] = max(0, confidence["Basic"] - 0.1)
+            elif property_age > 20:  # Older property
+                confidence["Basic"] += 0.1
+                confidence["Premium"] = max(0, confidence["Premium"] - 0.1)
+                
+            # Normalize confidence scores
+            total = sum(confidence.values())
+            confidence = {k: round(v/total, 4) for k, v in confidence.items()}
+        
+        # Determine recommended tier
+        recommended_tier = "Standard"  # Default
+        if policy.lower() == "house":
+            property_value = float(data.get("property_value", 0))
+            property_age = int(data.get("property_age", 0))
+            if property_value > 5000000 and property_age <= 5:  # High value, newer property
+                recommended_tier = "Premium"
+            elif property_value > 2500000 and property_age <= 10:  # Mid-high value, relatively new
+                recommended_tier = "Gold"
+            elif property_value < 1000000 or property_age > 20:  # Lower value or older property
+                recommended_tier = "Basic"
+        
+        return {
+            "recommended_tier": recommended_tier,
+            "all_tiers": all_tiers,
+            "confidence": confidence
+        }
 
     # Normalize country
     country_mapping = {

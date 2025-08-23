@@ -50,6 +50,7 @@ const TravelInsuranceForm = () => {
     try {
       console.log('Submitting travel insurance form with values:', values);
       
+      const countryCode = window.localStorage.getItem('selectedCountry') || 'IN';
       const formattedValues = {
         ...values,
         destination_country: values.destination_country,
@@ -63,7 +64,7 @@ const TravelInsuranceForm = () => {
       };
 
       console.log('Calling API with formatted values:', formattedValues);
-      const recommendations = await insuranceService.getRecommendations('TRAVEL', 'INDIA', formattedValues);
+      const recommendations = await insuranceService.getRecommendations('TRAVEL', countryCode, formattedValues);
       
       console.log('Received recommendations:', recommendations);
       if (recommendations) {

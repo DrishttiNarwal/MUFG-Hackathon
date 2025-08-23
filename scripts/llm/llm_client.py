@@ -6,20 +6,8 @@ import os
 import re
 from typing import Dict
 
-from dotenv import load_dotenv
-import google.generativeai as genai
-
-load_dotenv()
-
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-if not GEMINI_API_KEY:
-    # Don't crash the API; return a stub later
-    genai = None
-else:
-    genai.configure(api_key=GEMINI_API_KEY)
-
-# Use a widely available fast model
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+# Remove Gemini dependency for now
+genai = None
 
 
 def _safe_json_parse(text: str) -> Dict:
@@ -139,11 +127,8 @@ Instructions:
 """
 
     try:
-        model = genai.GenerativeModel(
-            GEMINI_MODEL,
-            generation_config={"response_mime_type": "application/json"},
-            system_instruction=system_prompt,
-        )
+        # Removed Gemini API integration
+        raise Exception("Gemini API not configured")
         resp = model.generate_content(user_prompt)
         parsed = _safe_json_parse(getattr(resp, "text", "") or "")
         # Basic validation

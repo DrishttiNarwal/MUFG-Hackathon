@@ -19,6 +19,15 @@ const vehicleTypes = [
   'Luxury'
 ];
 
+// Mapping of frontend vehicle types to backend types
+const vehicleTypeMapping = {
+  'car': 'car',
+  'three wheeler': 'three wheeler',
+  'bike': 'bike',
+  'truck': 'truck',
+  'luxury': 'luxury'
+};
+
 const validationSchema = Yup.object({
   age: Yup.number()
     .required('Age is required')
@@ -38,20 +47,68 @@ const validationSchema = Yup.object({
 const VehicleInsuranceForm = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = async (values, { setSubmitting }) => {
+  const handleSubmit = async (values, { setSubmitting, setStatus }) => {
     try {
-      const recommendations = await insuranceService.getRecommendations('vehicle', 'IN', {
+      console.log('Starting form submission with values:', values);
+      const countryCode = window.localStorage.getItem('selectedCountry') || 'IN';
+      console.log('Country code:', countryCode);
+
+      // Check if backend is available first
+      try {
+        await insuranceService.healthCheck();
+      } catch (healthError) {
+        console.error('Health check failed:', healthError);
+        throw new Error('Cannot connect to server. Please ensure the backend server is running.');
+      }
+
+      const formattedData = {
         ...values,
-        priceofvehicle: values.price_of_vehicle,
-        ageofvehicle: values.age_of_vehicle,
-        typeofvehicle: values.type_of_vehicle,
+        price_of_vehicle: parseFloat(values.price_of_vehicle),
+        age_of_vehicle: parseInt(values.age_of_vehicle),
+        type_of_vehicle: vehicleTypeMapping[values.type_of_vehicle.toLowerCase()] || 'car',
+        age: parseInt(values.age)
+      };
+      console.log('Formatted data:', formattedData);
+
+      // Add retry logic
+      let retryCount = 0;
+      const maxRetries = 3;
+      let recommendations;
+
+      while (retryCount < maxRetries) {
+        try {
+          recommendations = await insuranceService.getRecommendations('VEHICLE', countryCode, formattedData);
+          console.log('Received recommendations:', recommendations);
+          break; // Success, exit loop
+        } catch (apiError) {
+          retryCount++;
+          if (retryCount === maxRetries) {
+            throw apiError; // Last retry failed
+          }
+          console.log(`Retry attempt ${retryCount} of ${maxRetries}`);
+          await new Promise(resolve => setTimeout(resolve, 1000 * retryCount)); // Exponential backoff
+        }
+      }
+
+      if (!recommendations) {
+        throw new Error('No recommendations received from server');
+      }
+
+      navigate('/results', { 
+        state: { 
+          recommendations, 
+          insuranceType: 'vehicle',
+          userInput: formattedData 
+        } 
       });
-      navigate('/results', { state: { recommendations, insuranceType: 'vehicle' } });
     } catch (error) {
       console.error('Error submitting form:', error);
-      // Handle error appropriately
+      setStatus({
+        error: error.message || 'Failed to get recommendations. Please try again.'
+      });
+    } finally {
+      setSubmitting(false);
     }
-    setSubmitting(false);
   };
 
   return (
@@ -70,8 +127,15 @@ const VehicleInsuranceForm = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) => (
+        {({ values, errors, touched, handleChange, handleBlur, isSubmitting, status }) => (
           <Form>
+            {status && status.error && (
+              <Box sx={{ mb: 2 }}>
+                <Typography color="error" variant="body2">
+                  {status.error}
+                </Typography>
+              </Box>
+            )}
             <Box sx={{ mb: 3 }}>
               <TextField
                 fullWidth

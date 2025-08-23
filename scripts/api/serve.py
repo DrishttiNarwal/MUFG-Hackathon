@@ -20,21 +20,12 @@ app = FastAPI(
 )
 
 # CORS configuration
-origins = [
-    "http://localhost:3000",           # React dev server
-    "http://localhost:5173",           # Vite dev server
-    "http://127.0.0.1:3000",
-    "http://127.0.0.1:5173",
-    "http://localhost:8000",           # FastAPI server
-    "http://127.0.0.1:8000",
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],  # Allow all origins in development
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allow_headers=["*"],
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
     expose_headers=["*"],
     max_age=3600
 )
@@ -284,6 +275,8 @@ async def recommend(req: RecommendRequest):
         country = data.get("country", "").upper()
         if not country:
             raise ValueError("Country is required")
+            
+        print(f"Processing recommendation for country: {country}, policy type: {data.get('policy_type')}")
             
         # Handle country codes
         country_mapping = {
