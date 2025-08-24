@@ -1,0 +1,20 @@
+services:
+  backend:
+    networks:
+      - app-network
+    env_file:
+      - .env.development
+    environment:
+      - ENVIRONMENT=development
+
+  frontend:
+    networks:
+      - app-network
+    env_file:
+      - .env.development
+    environment:
+      - REACT_APP_API_URL=http://backend:8000
+
+networks:
+  app-network:
+    driver: bridge
