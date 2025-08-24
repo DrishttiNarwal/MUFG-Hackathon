@@ -1,0 +1,30 @@
+{
+  "name": "insurance_bot",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000I\u0000n\u0000s\u0000u\u0000r\u0000a\u0000n\u0000c\u0000e\u0000-\u0000B\u0000o\u0000t\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ishaan2605/Insurance-Bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Ishaan2605/Insurance-Bot/issues"
+  },
+  "homepage": "https://github.com/Ishaan2605/Insurance-Bot#readme",
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.1",
+    "vite": "^7.1.3"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  }
+}
