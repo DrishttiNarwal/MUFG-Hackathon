@@ -36,7 +36,6 @@ var/
 # Data and models
 data/
 processed/
-artifacts/
 vectorstore/
 *.pkl
 *.parquet
