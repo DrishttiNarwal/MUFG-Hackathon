@@ -21,10 +21,11 @@ RUN gunicorn --version
 # Copy the rest of the application
 COPY . .
 
-# Create non-root user for security
-RUN useradd -m myuser && \
-    mkdir -p /app/artifacts && \
-    chown -R myuser:myuser /app
+# Set environment variables and prepare directories
+RUN mkdir -p /app/artifacts && \
+    groupadd -r mygroup && \
+    useradd -r -g mygroup -d /app myuser && \
+    chown -R myuser:mygroup /app
 USER myuser
 
 # Set environment variables

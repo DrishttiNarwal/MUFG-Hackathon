@@ -5,6 +5,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
+    networks:
+      - app-network
     volumes:
       - ./artifacts:/app/artifacts
     env_file:
@@ -34,8 +36,10 @@ services:
       - "80:80"  # Changed to port 80 for production
     depends_on:
       - backend
+    networks:
+      - app-network
     environment:
-      - REACT_APP_API_URL=http://15.206.70.84:8000  # Updated to EC2 IP
+      - REACT_APP_API_URL=http://backend:8000
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/"]
