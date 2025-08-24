@@ -1,0 +1,13 @@
+[
+  "age",
+  "sumassured",
+  "destinationcountry",
+  "tripdurationdays",
+  "existingmedicalcondition",
+  "healthcoverage",
+  "baggagecoverage",
+  "tripcancellationcoverage",
+  "accidentcoverage",
+  "country",
+  "policytype"
+]
