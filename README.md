@@ -1,15 +1,22 @@
-# 🤖 Insurance Bot - AI-Powered Insurance Recommendation System  
+# 🤖 Guard Bot - AI-Powered Insurance Recommendation System  
 
 ##  Overview  
-Insurance Bot is an intelligent recommendation system that helps users find the most suitable insurance policies based on their profile and requirements. The system supports multiple insurance types across different countries, leveraging machine learning and natural language processing to provide personalized recommendations with clear explanation. 
+Guard Bot is an intelligent recommendation system that helps users find the most suitable insurance policies based on their profile and requirements. The system supports multiple insurance types across different countries, leveraging machine learning and natural language processing to provide personalized recommendations with clear explanation. 
 It uses a hybrid approach (ML + rule-based) so it stays smart, simple, and works on any kind of data.
 And it’s not just a bot — it’s an intelligent, responsible and self-explanatory assistant that makes insurance easy to understand.
 
 ---
+## 🔗 Final Project Deployed Link 
+
+http://13.200.250.84/
 
 ## 🎥 Final Project Demo Video  
 
 https://github.com/user-attachments/assets/ba9e6967-8dff-4809-8c7b-512180234a7d
+
+## 📄Final Project PPT
+
+[MUFG Hackathon-Final PPT.pdf](https://github.com/user-attachments/files/21975836/MUFG.Hackathon-Final.PPT.pdf)
 
 ##  Features <a name="features"></a>  
 
@@ -68,8 +75,11 @@ https://drive.google.com/drive/folders/1-j18M_fTbyKM5-6jziycuqmet79JUO-E?usp=sha
 * **2 CSVs** → \~**10,000×25 rows each**, split between India & Australia
 * Used for **model training, Graph RAG retrieval, and PowerBI dashboards**
 
-https://youtu.be/EB1_zJiKx44 – check the visualization out!
-  
+
+
+https://github.com/user-attachments/assets/02b9e85e-41c1-46da-a7ce-79a2e3fce182
+
+
 
 ---
 
@@ -132,8 +142,8 @@ https://youtu.be/EB1_zJiKx44 – check the visualization out!
 Clone the repository:
 
 ```bash
-git clone https://github.com/Ishaan2605/Insurance-Bot.git
-cd Insurance-Bot
+git clone <https://github.com/DrishttiNarwal/MUFG-Hackathon>
+
 ```
 
 Start with Docker Compose:
@@ -141,12 +151,6 @@ Start with Docker Compose:
 ```bash
 docker-compose up --build
 ```
-
-Access the application:
-
-* Frontend: [http://localhost:80](http://localhost:80)
-* Backend API: [http://localhost:8000](http://localhost:8000)
-* API Docs: [http://localhost:8000/docs](http://localhost:8000/docs)
 
 ---
 
@@ -171,6 +175,12 @@ npm start
 ```
 
 ---
+
+Access the application:
+
+* Frontend: [http://localhost:80](http://localhost:80)
+* Backend API: [http://localhost:8000](http://localhost:8000)
+* API Docs: [http://localhost:8000/docs](http://localhost:8000/docs)
 
 ## Usage Guide <a name="usage-guide"></a>
 
